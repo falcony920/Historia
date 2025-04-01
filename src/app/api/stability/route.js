@@ -53,7 +53,7 @@ async function getPrompts(story) {
             messages: [
                 {
                     role: "system",
-                    content: `You are a friendly assistant. Your job is to generate 1 image prompt in english based on the following story. The prompt should be a short but precise descriptive sentence. Try to generate the prompt using only the key elements of the story, like the characters, the places. For example, "a boy running in a field at sunset" or "a mysterious white creature standing in the middle of the forest".`,
+                    content: `You are a friendly assistant. Your job is to generate 1 image prompt in english based on the following story. The prompt should be a precise descriptive sentence. Try to generate the prompt using only the key elements of the story, like the profil of the child, the characters, the places. For example, "a white boy running in a field at sunset" or "a mysterious white creature standing in the middle of the forest".`,
                 },
                 {
                     role: "user",

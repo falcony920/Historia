@@ -9,6 +9,7 @@ export async function POST(req) {
 
   // Extracting prompt from the request body
   let prompt = "";
+  let duration = 15;
 
   try {
     // Log the raw request body to check if it is parsed correctly
@@ -16,7 +17,9 @@ export async function POST(req) {
     console.log("Request Body:", body);
 
     prompt = body.prompt;
+    duration = body.duration;
     console.log("Extracted Prompt:", prompt);
+    console.log("Duration of the story in seconds:", duration);
   } catch (error) {
     console.error("Error parsing request body:", error);
     return NextResponse.json({
@@ -43,16 +46,19 @@ export async function POST(req) {
           role: "system",
           content: `You are a children's tales writer. Your wrote and know the most popular french tales. 
           Your job is to write a tale in French based on the following prompt. Be subtle, draw inspiration 
-          from successful French folk tales while remaining original.`,
+          from successful French folk tales while remaining original. Do not talk about the skin color 
+          of the child`,
         },
         {
           role: "user",
+          //content : `Prompt: ${prompt}`,
+          //content : `what was the previous tale ?`,
           content: `Prompt: ${prompt}\n. Écris un conte en français, donne un
-          titre au conte en utilisant la syntaxe suivante : "Titre :..." puis revient à la ligne.`,
+          // titre au conte en utilisant la syntaxe suivante : "Titre :..." puis revient à la ligne.`,
 
         },
       ],
-      max_tokens: 200, // Increased tokens for a longer story
+      max_tokens: 200// 5*duration, // Increased tokens for a longer story
     });
 
     // Log the OpenAI response
